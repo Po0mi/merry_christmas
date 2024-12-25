@@ -51,6 +51,22 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
         }
+        .flash-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1em;
+            font-weight: bold;
+            color: #fff;
+            background-color: #ff5555;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            transition: background-color 0.3s;
+        }
+        .flash-button:hover {
+            background-color: #ff0000;
+        }
     </style>
 </head>
 <body>
@@ -59,6 +75,7 @@
         <div class="gif-container">
             <img src="https://gifsec.com/wp-content/uploads/2022/11/christmas-anime-gif-2.gif" alt="Christmas Anime GIF">
         </div>
+        <button class="flash-button" id="flashButton">Flash Background</button>
     </div>
 
     <!-- Snowflake Container -->
@@ -80,6 +97,27 @@
         }
 
         setInterval(createSnowflake, 200);
+
+        // Background flashing logic
+        const flashButton = document.getElementById('flashButton');
+        const flashColors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
+        let flashing = false;
+        let flashInterval;
+
+        flashButton.addEventListener('click', () => {
+            if (flashing) {
+                clearInterval(flashInterval);
+                flashing = false;
+                document.body.style.backgroundColor = '#002147'; // Reset to original
+            } else {
+                flashing = true;
+                let index = 0;
+                flashInterval = setInterval(() => {
+                    document.body.style.backgroundColor = flashColors[index];
+                    index = (index + 1) % flashColors.length;
+                }, 500);
+            }
+        });
     </script>
 </body>
 </html>
