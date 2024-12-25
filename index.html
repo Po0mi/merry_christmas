@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merry Christmas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #002147;
+            color: #fff;
+            margin: 0;
+            padding: 20px;
+            overflow: hidden;
+        }
+        .container {
+            margin-top: 10%;
+        }
+        .caption {
+            font-size: 2em;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-shadow: 2px 2px 5px #000;
+        }
+        /* Snowflake animation */
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            color: #fff;
+            font-size: 1.5em;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        .gif-container {
+            margin-top: 20px;
+        }
+        .gif-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="caption">Merry Christmas 🎄</div>
+        <div class="gif-container">
+            <img src="https://gifsec.com/wp-content/uploads/2022/11/christmas-anime-gif-2.gif" alt="Christmas Anime GIF">
+        </div>
+    </div>
+
+    <!-- Snowflake Container -->
+    <script>
+        const colors = ['#ffffff', '#ffddcc', '#ffcccc', '#ccffff'];
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.innerHTML = '&#10052;';
+            snowflake.classList.add('snowflake');
+            snowflake.style.left = Math.random() * window.innerWidth + 'px';
+            snowflake.style.fontSize = Math.random() * 20 + 10 + 'px';
+            snowflake.style.animationDuration = Math.random() * 5 + 3 + 's';
+            snowflake.style.color = colors[Math.floor(Math.random() * colors.length)];
+            document.body.appendChild(snowflake);
+
+            snowflake.addEventListener('animationend', () => {
+                snowflake.remove();
+            });
+        }
+
+        setInterval(createSnowflake, 200);
+    </script>
+</body>
+</html>
